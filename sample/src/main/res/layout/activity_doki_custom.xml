@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <app:dev.doubledot.doki.views.DokiContentView
-            android:id="@+id/doki_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:dokiPrimaryTextColor="#fff"
-            app:dokiSecondaryTextColor="#bdc3c7"
-            app:dokiButtonsTextColor="#2bcbba"
-            app:dokiActiveIconsColor="#eb3b5a"
-            app:dokiInactiveIconsColor="#45aaf2"
-            app:dokiExplanationTitle="The Explanation"
-            app:dokiSolutionTitle="The Solution"
-            app:dokiBackgroundColor="#34495e"
-            app:dokiHeaderBackgroundColor="#2c3e50"
-            app:dokiDividerColor="#f1c40f"
-            app:dokiImgBorderColor="#27ae60"
-            app:dokiActiveIconsDrawable="@drawable/ic_alarm"
-            app:dokiInactiveIconsDrawable="@drawable/ic_alarm_outline"
-    />
+        android:id="@+id/doki_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:dokiActiveIconsColor="#eb3b5a"
+        app:dokiActiveIconsDrawable="@drawable/ic_alarm"
+        app:dokiBackgroundColor="#34495e"
+        app:dokiButtonsTextColor="#2bcbba"
+        app:dokiDividerColor="#f1c40f"
+        app:dokiExplanationTitle="The Explanation"
+        app:dokiHeaderBackgroundColor="#2c3e50"
+        app:dokiImgBorderColor="#27ae60"
+        app:dokiInactiveIconsColor="#45aaf2"
+        app:dokiInactiveIconsDrawable="@drawable/ic_alarm_outline"
+        app:dokiPrimaryTextColor="#fff"
+        app:dokiSecondaryTextColor="#bdc3c7"
+        app:dokiSolutionTitle="The Solution"
+        tools:ignore="MissingClass" />
 
     <!--
         Additionally, if you don't want to set custom drawables for active and inactive icons,

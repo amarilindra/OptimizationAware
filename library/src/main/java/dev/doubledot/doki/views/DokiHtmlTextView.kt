@@ -30,10 +30,14 @@ class DokiHtmlTextView @JvmOverloads constructor(
         .usePlugin(ImagesPlugin.create(context))
         .usePlugin(OkHttpImagesPlugin.create())
         .usePlugin(HtmlPlugin.create())
-        .usePlugin(object: AbstractMarkwonPlugin() {
+        .usePlugin(object : AbstractMarkwonPlugin() {
             override fun configureHtmlRenderer(builder: MarkwonHtmlRenderer.Builder) {
-                builder.setHandler("code", object: SimpleTagHandler() {
-                    override fun getSpans(configuration: MarkwonConfiguration, renderProps: RenderProps, tag: HtmlTag): Any? {
+                builder.setHandler("code", object : SimpleTagHandler() {
+                    override fun getSpans(
+                        configuration: MarkwonConfiguration,
+                        renderProps: RenderProps,
+                        tag: HtmlTag
+                    ): Any? {
                         return CodeBlockSpan(configuration.theme())
                     }
                 })
@@ -50,7 +54,7 @@ class DokiHtmlTextView @JvmOverloads constructor(
         })
         .build()
 
-    var htmlText : String? = null
+    var htmlText: String? = null
         set(value) {
             value?.let {
                 markwon.setMarkdown(this, value)
@@ -58,7 +62,7 @@ class DokiHtmlTextView @JvmOverloads constructor(
             field = value
         }
 
-    var linkHighlightColor : Int = 0
+    var linkHighlightColor: Int = 0
         set(value) {
             field = value
             htmlText = htmlText

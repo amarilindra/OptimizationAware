@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.DoubleDotLabs.doki'
 
 android {
@@ -9,8 +9,6 @@ android {
     defaultConfig {
         minSdkVersion meta.minSdk
         targetSdkVersion meta.sdk
-        versionCode meta.versionCode
-        versionName meta.versionName
         proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         consumerProguardFiles 'proguard-rules.pro'
     }
@@ -22,18 +20,18 @@ android {
             consumerProguardFiles 'proguard-rules.pro'
         }
     }
-
     packagingOptions {
-        pickFirst 'META-INF/core_debug.kotlin_module'
-        pickFirst 'META-INF/core_release.kotlin_module'
-        pickFirst 'META-INF/library_debug.kotlin_module'
-        pickFirst 'META-INF/library_release.kotlin_module'
+        resources {
+            pickFirsts += ['META-INF/core_debug.kotlin_module', 'META-INF/core_release.kotlin_module', 'META-INF/library_debug.kotlin_module', 'META-INF/library_release.kotlin_module']
+        }
     }
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'dev.doubledot.doki.api'
 }
 
 dependencies {

@@ -31,10 +31,10 @@ class DokiContentView @JvmOverloads constructor(
 
     // View bindings ---------------------------------------
 
-    private val appBarLayout : View? by bind(R.id.appbar)
-    private val footerLayout : View? by bind(R.id.footer)
+    private val appBarLayout: View? by bind(R.id.appbar)
+    private val footerLayout: View? by bind(R.id.footer)
 
-    private val headerBackground : View? by bind(R.id.headerBackground)
+    private val headerBackground: View? by bind(R.id.headerBackground)
 
     private val deviceManufacturerHeader: TextView? by bind(R.id.deviceManufacturerHeader)
     private val deviceManufacturer: TextView? by bind(R.id.deviceManufacturer)
@@ -49,18 +49,18 @@ class DokiContentView @JvmOverloads constructor(
     private val manufacturerRating: DokiRatingView? by bind(R.id.manufacturerRating)
 
     private val contentLoadingView: ProgressBar? by bind(R.id.contentLoadingView)
-    private val contentScrollView : View? by bind(R.id.contentScrollView)
+    private val contentScrollView: View? by bind(R.id.contentScrollView)
 
-    private val contentExplanationHeader : TextView? by bind(R.id.contentExplanationHeader)
-    private val contentExplanation : DokiHtmlTextView? by bind(R.id.contentExplanation)
+    private val contentExplanationHeader: TextView? by bind(R.id.contentExplanationHeader)
+    private val contentExplanation: DokiHtmlTextView? by bind(R.id.contentExplanation)
 
-    private val contentSolutionHeader : TextView? by bind(R.id.contentSolutionHeader)
-    private val contentSolution : DokiHtmlTextView? by bind(R.id.contentSolution)
+    private val contentSolutionHeader: TextView? by bind(R.id.contentSolutionHeader)
+    private val contentSolution: DokiHtmlTextView? by bind(R.id.contentSolution)
 
-    private val contentDeveloperSolutionHeader : TextView? by bind(R.id.contentDeveloperSolutionHeader)
-    private val contentDeveloperSolution : DokiHtmlTextView? by bind(R.id.contentDeveloperSolution)
+    private val contentDeveloperSolutionHeader: TextView? by bind(R.id.contentDeveloperSolutionHeader)
+    private val contentDeveloperSolution: DokiHtmlTextView? by bind(R.id.contentDeveloperSolution)
 
-    private val contentAttribution : DokiHtmlTextView? by bind(R.id.contentAttribution)
+    private val contentAttribution: DokiHtmlTextView? by bind(R.id.contentAttribution)
 
     private val buttonContainer: View? by bind(R.id.buttonContainer)
     private val closeBtn: TextView? by bind(R.id.buttonClose)
@@ -147,7 +147,7 @@ class DokiContentView @JvmOverloads constructor(
             field = value
         }
 
-    var iconsStyle : DokiRatingView.Style? = DokiRatingView.Style.THUMB
+    var iconsStyle: DokiRatingView.Style? = DokiRatingView.Style.THUMB
         set(value) {
             value?.let {
                 activeIconsDrawable = try {
@@ -178,7 +178,7 @@ class DokiContentView @JvmOverloads constructor(
             field = value
         }
 
-    var lineHeight : Float = 1F
+    var lineHeight: Float = 1F
         set(value) {
             contentExplanation?.setLineSpacing(lineSeparation, value)
             contentSolution?.setLineSpacing(lineSeparation, value)
@@ -186,7 +186,7 @@ class DokiContentView @JvmOverloads constructor(
             field = value
         }
 
-    var lineSeparation : Float = 0F
+    var lineSeparation: Float = 0F
         set(value) {
             field = value
             lineHeight = lineHeight
@@ -199,7 +199,7 @@ class DokiContentView @JvmOverloads constructor(
     var solutionTitleText: String = ""
     private var appName: String = ""
 
-    var device : Device? = null
+    var device: Device? = null
         set(value) {
             field = value
             value ?: return
@@ -209,7 +209,7 @@ class DokiContentView @JvmOverloads constructor(
             deviceAndroidVersion?.text = value.androidVersion
         }
 
-    var manufacturer : DokiManufacturer? = null
+    var manufacturer: DokiManufacturer? = null
         set(value) {
             field = value
             value ?: return
@@ -219,12 +219,14 @@ class DokiContentView @JvmOverloads constructor(
             manufacturerRatingHeader?.visibleIf(value.award > 0)
 
             contentExplanation?.htmlText = value.explanation
-            contentSolution?.htmlText = value.user_solution.let {
-                if(appName.isNotEmpty())
-                    it.replace("your app", appName, true)
-                else
-                    it
-            }
+
+            contentSolution?.htmlText =
+                value.user_solution.let {
+                    if (appName.isNotEmpty())
+                        it.replace("your app", appName, true).replace("\n\n", "<br/>")
+                    else
+                        it
+                }
 
             if (value.dev_solution.isNullOrEmpty()) {
                 contentDeveloperSolutionHeader?.visibility = GONE
@@ -260,16 +262,33 @@ class DokiContentView @JvmOverloads constructor(
 
         // Styling
 
-        primaryTextColor = styledAttrs?.getColorOrNull(R.styleable.DokiContentView_dokiPrimaryTextColor) ?: primaryTextColor
-        secondaryTextColor = styledAttrs?.getColorOrNull(R.styleable.DokiContentView_dokiSecondaryTextColor) ?: secondaryTextColor
-        buttonsTextColor = styledAttrs?.getColorOrNull(R.styleable.DokiContentView_dokiButtonsTextColor) ?: buttonsTextColor
-        dividerColor = styledAttrs?.getColorOrNull(R.styleable.DokiContentView_dokiDividerColor) ?: dividerColor
-        headerBackgroundColor = styledAttrs?.getColorOrNull(R.styleable.DokiContentView_dokiHeaderBackgroundColor) ?: headerBackgroundColor
-        activeIconsDrawable = styledAttrs?.getDrawableOrNull(R.styleable.DokiContentView_dokiActiveIconsDrawable) ?: activeIconsDrawable
-        inactiveIconsDrawable = styledAttrs?.getDrawableOrNull(R.styleable.DokiContentView_dokiInactiveIconsDrawable) ?: inactiveIconsDrawable
+        primaryTextColor =
+            styledAttrs?.getColorOrNull(R.styleable.DokiContentView_dokiPrimaryTextColor)
+                ?: primaryTextColor
+        secondaryTextColor =
+            styledAttrs?.getColorOrNull(R.styleable.DokiContentView_dokiSecondaryTextColor)
+                ?: secondaryTextColor
+        buttonsTextColor =
+            styledAttrs?.getColorOrNull(R.styleable.DokiContentView_dokiButtonsTextColor)
+                ?: buttonsTextColor
+        dividerColor = styledAttrs?.getColorOrNull(R.styleable.DokiContentView_dokiDividerColor)
+            ?: dividerColor
+        headerBackgroundColor =
+            styledAttrs?.getColorOrNull(R.styleable.DokiContentView_dokiHeaderBackgroundColor)
+                ?: headerBackgroundColor
+        activeIconsDrawable =
+            styledAttrs?.getDrawableOrNull(R.styleable.DokiContentView_dokiActiveIconsDrawable)
+                ?: activeIconsDrawable
+        inactiveIconsDrawable =
+            styledAttrs?.getDrawableOrNull(R.styleable.DokiContentView_dokiInactiveIconsDrawable)
+                ?: inactiveIconsDrawable
         iconsStyle = getStyledIconsStyle(styledAttrs) ?: iconsStyle
-        activeIconsColor = styledAttrs?.getColorOrNull(R.styleable.DokiContentView_dokiActiveIconsColor) ?: activeIconsColor
-        inactiveIconsColor = styledAttrs?.getColorOrNull(R.styleable.DokiContentView_dokiInactiveIconsColor) ?: inactiveIconsColor
+        activeIconsColor =
+            styledAttrs?.getColorOrNull(R.styleable.DokiContentView_dokiActiveIconsColor)
+                ?: activeIconsColor
+        inactiveIconsColor =
+            styledAttrs?.getColorOrNull(R.styleable.DokiContentView_dokiInactiveIconsColor)
+                ?: inactiveIconsColor
         lineHeight = 1F
         lineSeparation = 8F.dpToPx
 
@@ -281,7 +300,8 @@ class DokiContentView @JvmOverloads constructor(
             ""
         }
         explanationTitleText = try {
-            styledAttrs?.getString(R.styleable.DokiContentView_dokiExplanationTitle) ?: defaultExplanationTitleText
+            styledAttrs?.getString(R.styleable.DokiContentView_dokiExplanationTitle)
+                ?: defaultExplanationTitleText
         } catch (e: Exception) {
             defaultExplanationTitleText
         }
@@ -292,7 +312,8 @@ class DokiContentView @JvmOverloads constructor(
             ""
         }
         solutionTitleText = try {
-            styledAttrs?.getString(R.styleable.DokiContentView_dokiSolutionTitle) ?: defaultSolutionTitleText
+            styledAttrs?.getString(R.styleable.DokiContentView_dokiSolutionTitle)
+                ?: defaultSolutionTitleText
         } catch (e: Exception) {
             defaultSolutionTitleText
         }
@@ -311,9 +332,9 @@ class DokiContentView @JvmOverloads constructor(
     fun loadContent(
         manufacturerId: String = DONT_KILL_MY_APP_DEFAULT_MANUFACTURER,
         appName: String = ""
-    ) : DokiApi {
+    ): DokiApi {
         this.appName = appName
-        api.callback = object: DokiApiCallback {
+        api.callback = object : DokiApiCallback {
             override fun onSuccess(response: DokiManufacturer?) {
                 manufacturer = response
             }
@@ -347,7 +368,25 @@ class DokiContentView @JvmOverloads constructor(
         contentDeveloperSolution?.visibleIf(visible)
     }
 
-    private fun getStyledIconsStyle(attrs : TypedArray?) : DokiRatingView.Style? {
+    fun setRatingVisibility(visible: Boolean) {
+        manufacturerRating?.visibleIf(visible)
+        manufacturerRatingHeader?.visibleIf(visible)
+    }
+
+    fun setDeviceManufacturerVisibility(visible: Boolean) {
+        deviceManufacturer?.visibleIf(visible)
+        deviceManufacturerHeader?.visibleIf(visible)
+        if (!visible) {
+            deviceModelHeader?.text = device?.manufacturer
+        }
+    }
+
+    fun setDivider1Visibility(visible: Boolean) {
+        divider1?.visibleIf(visible)
+    }
+
+
+    private fun getStyledIconsStyle(attrs: TypedArray?): DokiRatingView.Style? {
         val iconsStyleId = try {
             attrs?.getInt(R.styleable.DokiContentView_dokiIconsStyle, -1) ?: -1
         } catch (e: Exception) {

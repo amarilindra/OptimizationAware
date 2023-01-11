@@ -16,10 +16,15 @@ class DokiCustomizedActivity : AppCompatActivity() {
 
         dokiContent?.apply {
             setOnCloseListener { supportFinishAfterTransition() }
-            setExplanationVisibility(false)
-            setDeveloperSolutionVisibility(false)
-            loadContent(appName = "Doki App")
         }
+
+        dokiContent!!.setRatingVisibility(false)
+        dokiContent!!.setDeviceManufacturerVisibility(false)
+        dokiContent!!.setDivider1Visibility(false)
+
+        dokiContent!!.setExplanationVisibility(false)
+        dokiContent!!.setDeveloperSolutionVisibility(false)
+        dokiContent!!.loadContent(appName = "Unseen Messenger")
     }
 
 }

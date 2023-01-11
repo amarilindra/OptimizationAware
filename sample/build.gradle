@@ -19,18 +19,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     packagingOptions {
-        pickFirst 'META-INF/core_debug.kotlin_module'
-        pickFirst 'META-INF/core_release.kotlin_module'
-        pickFirst 'META-INF/library_debug.kotlin_module'
-        pickFirst 'META-INF/library_release.kotlin_module'
+        resources {
+            pickFirsts += ['META-INF/core_debug.kotlin_module', 'META-INF/core_release.kotlin_module', 'META-INF/library_debug.kotlin_module', 'META-INF/library_release.kotlin_module']
+        }
     }
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'dev.doubledot.doki.app'
 }
 
 dependencies {
