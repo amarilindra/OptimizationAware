@@ -385,6 +385,14 @@ class DokiContentView @JvmOverloads constructor(
         divider1?.visibleIf(visible)
     }
 
+    fun setCloseButtonVisibility(visible: Boolean) {
+        footerLayout?.visibleIf(visible)
+    }
+
+    fun setSolutionTextVisibility(visible: Boolean) {
+        contentSolutionHeader?.visibleIf(visible)
+    }
+
 
     private fun getStyledIconsStyle(attrs: TypedArray?): DokiRatingView.Style? {
         val iconsStyleId = try {
