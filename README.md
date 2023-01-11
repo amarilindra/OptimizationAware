@@ -1,6 +1,5 @@
 ## OptimizationAware
-=====
-** Modified version of Doki with better UX and customizations **
+Modified version of Doki with better UX and customizations
 
 | Default Activity | Activity w Custom Theme | Dialog                                  | Customized Doki View |
 |------------------|-------------------------|-----------------------------------------|----------------------|
